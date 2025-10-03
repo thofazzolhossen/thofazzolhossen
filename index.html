@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thofazzol Hossen - Software Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --accent: #3b82f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        
+        #hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .about-profile-img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .about-img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-img-wrapper:hover .about-profile-img {
+            transform: scale(1.05);
+        }
+        
+        .about-overlay {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 90%;
+            max-width: 320px;
+        }
+        
+        .about-stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .stat-item p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+        
+        .about-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .info-item:hover {
+            background: #e0e7ff;
+            transform: translateX(5px);
+        }
+        
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+        
+        .info-item strong {
+            display: block;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        
+        .info-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .skill-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .skill-card:hover .skill-icon-wrapper {
+            transform: rotateY(180deg);
+        }
+        
+        .skill-icon-wrapper i {
+            color: white;
+            margin: 0;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .typing-text {
+            display: inline-block;
+            border-right: 3px solid #fbbf24;
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
+            color: #fbbf24;
+        }
+        
+        @keyframes blink {
+            0%, 100% { border-color: #fbbf24; }
+            50% { border-color: transparent; }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary-custom {
+            background: white;
+            color: var(--primary);
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+        }
+        
+        .about-section {
+            padding: 100px 0;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            margin-bottom: 30px;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .skill-card:hover h4,
+        .skill-card:hover p {
+            color: white;
+        }
+        
+        .skill-card:hover .skill-icon-wrapper {
+            background: white;
+        }
+        
+        .skill-card:hover .skill-icon-wrapper i {
+            color: var(--primary);
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .skill-card h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .skill-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--light);
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+        
+        .skill-badge:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .experience-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+        
+        .project-card-body {
+            padding: 25px;
+        }
+        
+        .project-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 3px;
+        }
+        
+        .achievement-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .achievement-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .achievement-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+        
+        .cert-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+        
+        .cert-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-info i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        footer h5 {
+            color: white;
+            font-weight: 600;
+        }
+        
+        footer .text-muted {
+            color: #94a3b8 !important;
+        }
+        
+        footer a {
+            transition: all 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--primary) !important;
+        }
+        
+        footer hr {
+            opacity: 0.2;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">TH</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 hero-content" data-aos="fade-up">
+                    <h1 class="hero-title">Hi, I'm <span class="typing-text" id="typing-name"></span></h1>
+                    <p class="hero-subtitle">Full Stack Software Engineer | Problem Solver | Tech Enthusiast</p>
+                    <div class="social-links mb-4">
+                        <a href="https://github.com/thofazzolhossen" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/thofazzol-hossen-872a2923a" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:thofazzolhossen@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+8801851125011"><i class="fas fa-phone"></i></a>
+                    </div>
+                    <a href="#contact" class="btn btn-primary-custom">Get In Touch</a>
+                </div>
+                <div class="col-lg-5 text-center" data-aos="fade-left">
+                    <img src="profile.jpg" alt="Thofazzol Hossen" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <h3 class="mb-4">Software Engineer & Competitive Programmer</h3>
+                    <p class="lead">I'm a passionate Full Stack Software Engineer with expertise in .NET Core, Node.js, React, and modern web technologies. Currently working at Masleap Plc, I specialize in building scalable applications and solving complex problems.</p>
+                    <p>With over 700+ problems solved across various competitive programming platforms, I have a strong foundation in Data Structures and Algorithms. I love leading teams, managing projects, and contributing to the tech community.</p>
+                    <div class="mt-4">
+                        <p><strong><i class="fas fa-graduation-cap me-2"></i></strong>B.Sc in Computer Science and Engineering</p>
+                        <p><strong><i class="fas fa-university me-2"></i></strong>Dhaka University of Engineering & Technology (DUET)</p>
+                        <p><strong><i class="fas fa-map-marker-alt me-2"></i></strong>Gazipur, Dhaka, Bangladesh</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                    <div class="skill-card text-center">
+                        <i class="fas fa-code"></i>
+                        <h4>Backend Development</h4>
+                        <p>.NET Core, Node.js, Express.js, Clean Architecture</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                    <div class="skill-card text-center">
+                        <i class="fas fa-paint-brush"></i>
+                        <h4>Frontend Development</h4>
+                        <p>React, Angular, Blazor, Bootstrap, Tailwind</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                    <div class="skill-card text-center">
+                        <i class="fas fa-database"></i>
+                        <h4>Database</h4>
+                        <p>MySQL, SQL Server, MongoDB</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                    <div class="skill-card text-center">
+                        <i class="fas fa-brain"></i>
+                        <h4>Problem Solving</h4>
+                        <p>DSA, Algorithms, Competitive Programming</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                    <div class="skill-card text-center">
+                        <i class="fas fa-eye"></i>
+                        <h4>Machine Learning</h4>
+                        <p>OpenCV, Computer Vision, ML Algorithms</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Technical Skills</h2>
+            </div>
+            <div class="row" data-aos="fade-up">
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3"><i class="fas fa-laptop-code me-2"></i>Languages</h5>
+                    <div>
+                        <span class="skill-badge">C++</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">TypeScript</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">PHP</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3"><i class="fas fa-layer-group me-2"></i>Frameworks & Libraries</h5>
+                    <div>
+                        <span class="skill-badge">.NET Core</span>
+                        <span class="skill-badge">MVC</span>
+                        <span class="skill-badge">.NET Core API</span>
+                        <span class="skill-badge">Razor Pages</span>
+                        <span class="skill-badge">Express.js</span>
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">Blazor</span>
+                        <span class="skill-badge">MudBlazor</span>
+                        <span class="skill-badge">jQuery</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3"><i class="fas fa-tools me-2"></i>Tools & Platforms</h5>
+                    <div>
+                        <span class="skill-badge">Git & GitHub</span>
+                        <span class="skill-badge">Postman</span>
+                        <span class="skill-badge">Swagger</span>
+                        <span class="skill-badge">npm</span>
+                        <span class="skill-badge">Render</span>
+                        <span class="skill-badge">Azure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Experience</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div class="experience-card">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div>
+                                <h4>Jr. Software Engineer</h4>
+                                <h5 class="text-primary">Masleap Plc</h5>
+                            </div>
+                            <span class="badge bg-primary">July 2025 - Present</span>
+                        </div>
+                        <ul class="mt-3">
+                            <li>Working on real-time full-stack projects using multiple technology stacks</li>
+                            <li>Technologies: .NET Core, Node.js, React.js, Blazor, MudBlazor, and Telerik</li>
+                            <li>Developing scalable and efficient web applications</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div>
+                                <h4>Software Engineer Intern (.NET Core)</h4>
+                                <h5 class="text-primary">Brain Station 23</h5>
+                            </div>
+                            <span class="badge bg-primary">Mar 2025 - Apr 2025</span>
+                        </div>
+                        <ul class="mt-3">
+                            <li>Worked on real-time .NET Core MVC projects</li>
+                            <li>Implemented Clean Architecture principles</li>
+                            <li>Version control using Git and GitHub</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div>
+                                <h4>Vice President & Software Division Supervisor</h4>
+                                <h5 class="text-primary">DUET Robotics Club</h5>
+                            </div>
+                            <span class="badge bg-primary">Jan 2023 - Aug 2025</span>
+                        </div>
+                        <ul class="mt-3">
+                            <li>Led the software division and managed club operations</li>
+                            <li>Supervised website development and social media management</li>
+                            <li>Organized technical events and workshops</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Projects</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up">
+                    <div class="project-card">
+                        <div class="project-card-body">
+                            <h4>TechHutBD E-commerce Platform</h4>
+                            <p class="text-muted mb-3"><i class="fas fa-link me-2"></i><a href="https://techhutbd.com" target="_blank">techhutbd.com</a> <span class="badge bg-success ms-2">Live</span></p>
+                            <p>Full-scale e-commerce platform with complete SDLC management. Led the project as Team Leader, designed DFDs, and implemented Clean Architecture.</p>
+                            <div class="mb-3">
+                                <span class="project-badge">.NET Core</span>
+                                <span class="project-badge">MVC</span>
+                                <span class="project-badge">Clean Architecture</span>
+                                <span class="project-badge">JavaScript</span>
+                                <span class="project-badge">jQuery</span>
+                                <span class="project-badge">Bootstrap</span>
+                            </div>
+                            <p><strong>Role:</strong> Team Leader & Full Stack Developer</p>
+                            <p><strong>Responsibilities:</strong> SDLC management, DFD design, frontend & backend development, deployment on Webuzo panel</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-up">
+                    <div class="project-card">
+                        <div class="project-card-body">
+                            <h4>DUET Robotics Club Website</h4>
+                            <p class="text-muted mb-3"><i class="fas fa-link me-2"></i><a href="https://duetroboticsclub.org" target="_blank">duetroboticsclub.org</a> <span class="badge bg-success ms-2">Live</span></p>
+                            <p>Official website for DUET Robotics Club with responsive UI and RESTful APIs. Managed client communication and requirement gathering throughout development.</p>
+                            <div class="mb-3">
+                                <span class="project-badge">React</span>
+                                <span class="project-badge">Node.js</span>
+                                <span class="project-badge">Express.js</span>
+                                <span class="project-badge">MongoDB</span>
+                                <span class="project-badge">Bootstrap</span>
+                            </div>
+                            <p><strong>Role:</strong> Full Stack Developer</p>
+                            <p><strong>Responsibilities:</strong> Frontend & backend development, client communication, requirements gathering, deployment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Achievements & Competition</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="achievement-item">
+                        <i class="fas fa-trophy"></i>
+                        <div>
+                            <h5>1st Runner-Up</h5>
+                            <p class="mb-0">DUET Tech Fest 2023</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-medal"></i>
+                        <div>
+                            <h5>2nd Position - Robo Tech Fest 2023</h5>
+                            <p class="mb-0">Team Competition (35 Participants)</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h5>5th Place - Intra DUET Programming Contest 2022</h5>
+                            <p class="mb-0">Competitive Programming</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="achievement-item">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h5>4th Place - NACTAR Robotics Olympiad</h5>
+                            <p class="mb-0">National Computer Training and Research Academy, Bogura</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-code"></i>
+                        <div>
+                            <h5>700+ Problems Solved</h5>
+                            <p class="mb-0">LeetCode, Codeforces, beecrowd, CSES, HackerRank</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h5>ICPC Participant</h5>
+                            <p class="mb-0">2021 ICPC Asia Dhaka Regional Site Online Preliminary Contest</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Certifications</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <i class="fas fa-certificate text-primary fa-2x mb-3"></i>
+                        <h5>Artificial Intelligence in Web Design</h5>
+                        <p class="text-muted mb-2">Udemy</p>
+                        <p class="small">Instructors: Srinidhi Ranganathan, First Look Digital Marketing Solutions Pvt. Ltd.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <i class="fas fa-certificate text-primary fa-2x mb-3"></i>
+                        <h5>SQL For Data Science</h5>
+                        <p class="text-muted mb-2">Bangladesh Youth Leadership Center</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <i class="fas fa-certificate text-primary fa-2x mb-3"></i>
+                        <h5>Database Management Systems - MySQL</h5>
+                        <p class="text-muted mb-2">Tutorials Point</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <i class="fas fa-certificate text-primary fa-2x mb-3"></i>
+                        <h5>Front-End Web Development with React</h5>
+                        <p class="text-muted mb-2">Coursera</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <i class="fas fa-certificate text-primary fa-2x mb-3"></i>
+                        <h5>JavaScript Project</h5>
+                        <p class="text-muted mb-2">Great Learning Academy</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <i class="fas fa-certificate text-primary fa-2x mb-3"></i>
+                        <h5>Software Testing</h5>
+                        <p class="text-muted mb-2">Great Learning Academy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Leadership & Activities</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h4 class="mb-4"><i class="fas fa-users me-2"></i>Leadership Roles</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Head of Programming Contest Controller - Techfest IIT Bombay 2024</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Team Leader - duetroboticsclub.org</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Team Leader - TechHutBD.com</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Software Lead Supervisor - DUET Robotics Club</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Co-Curricular Activities Secretary - DUET Computer Society</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Volunteer - DUET Tech Fest 2022</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Volunteer - IDPC 2022</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="mb-4"><i class="fas fa-hands-helping me-2"></i>Social Activities</h4>
+                    <div class="card border-0 shadow-sm mb-3">
+                        <div class="card-body">
+                            <h5><i class="fas fa-mosque text-primary me-2"></i>Community Service</h5>
+                            <p class="mb-0">Organizer of Village Iftar Party and Annual Islamic Sermon Gathering</p>
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow-sm mb-3">
+                        <div class="card-body">
+                            <h5><i class="fas fa-football-ball text-primary me-2"></i>Sports Events</h5>
+                            <p class="mb-0">Organizer of Village Football and Cricket Tournament on Eid Vacation</p>
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5><i class="fas fa-hand-holding-heart text-primary me-2"></i>Wall of Kindness</h5>
+                            <p class="mb-0">Running - Ongoing Social Initiative</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title text-white">Get In Touch</h2>
+                <p class="text-white lead">Feel free to reach out for collaborations, opportunities, or just a friendly chat!</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                    <div class="contact-info text-center">
+                        <i class="fas fa-envelope"></i>
+                        <h5 class="mt-3">Email</h5>
+                        <p><a href="mailto:thofazzolhossen@gmail.com" class="text-white">thofazzolhossen@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-info text-center">
+                        <i class="fas fa-phone"></i>
+                        <h5 class="mt-3">Phone</h5>
+                        <p><a href="tel:+8801851125011" class="text-white">+880 1851-125011</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info text-center">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h5 class="mt-3">Location</h5>
+                        <p>Joydevpur R/A, Road 03<br>Gazipur, Dhaka, Bangladesh</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4" data-aos="fade-up">
+                <div class="social-links">
+                    <a href="https://github.com/thofazzolhossen" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/thofazzol-hossen-872a2923a" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:thofazzolhossen@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+8801851125011"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Thofazzol Hossen</h5>
+                    <p class="text-muted">Full Stack Software Engineer passionate about building innovative solutions and solving complex problems.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#about" class="text-muted text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="#experience" class="text-muted text-decoration-none">Experience</a></li>
+                        <li class="mb-2"><a href="#projects" class="text-muted text-decoration-none">Projects</a></li>
+                        <li class="mb-2"><a href="#achievements" class="text-muted text-decoration-none">Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Connect</h5>
+                    <div class="d-flex gap-3">
+                        <a href="https://github.com/thofazzolhossen" target="_blank" class="text-white"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="https://linkedin.com/in/thofazzol-hossen-872a2923a" target="_blank" class="text-white"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="mailto:thofazzolhossen@gmail.com" class="text-white"><i class="fas fa-envelope fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 Thofazzol Hossen. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">Designed with <i class="fas fa-heart text-danger"></i> by Thofazzol</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" style="width: 50px; height: 50px; display: none; z-index: 1000;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js 3D Animation for Hero Section
+        const canvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        camera.position.z = 30;
+        
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1000;
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.15,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8
+        });
+        
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        
+        // Create geometric shapes
+        const shapes = [];
+        const geometries = [
+            new THREE.BoxGeometry(2, 2, 2),
+            new THREE.SphereGeometry(1.5, 32, 32),
+            new THREE.TetrahedronGeometry(1.5),
+            new THREE.OctahedronGeometry(1.5),
+            new THREE.TorusGeometry(1, 0.4, 16, 100)
+        ];
+        
+        for(let i = 0; i < 8; i++) {
+            const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+            const material = new THREE.MeshPhongMaterial({
+                color: Math.random() * 0xffffff,
+                transparent: true,
+                opacity: 0.3,
+                wireframe: true
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            
+            mesh.position.x = (Math.random() - 0.5) * 50;
+            mesh.position.y = (Math.random() - 0.5) * 50;
+            mesh.position.z = (Math.random() - 0.5) * 30;
+            
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            
+            mesh.userData = {
+                speedX: (Math.random() - 0.5) * 0.01,
+                speedY: (Math.random() - 0.5) * 0.01,
+                rotationSpeed: (Math.random() - 0.5) * 0.02
+            };
+            
+            shapes.push(mesh);
+            scene.add(mesh);
+        }
+        
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        
+        const pointLight = new THREE.PointLight(0xffffff, 1);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+        
+        // Mouse movement effect
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate particles
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.0005;
+            
+            // Animate shapes
+            shapes.forEach(shape => {
+                shape.rotation.x += shape.userData.rotationSpeed;
+                shape.rotation.y += shape.userData.rotationSpeed;
+                
+                shape.position.x += shape.userData.speedX;
+                shape.position.y += shape.userData.speedY;
+                
+                // Boundary check
+                if(Math.abs(shape.position.x) > 25) shape.userData.speedX *= -1;
+                if(Math.abs(shape.position.y) > 25) shape.userData.speedY *= -1;
+            });
+            
+            // Camera movement based on mouse
+            camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Typing Animation
+        const typingElement = document.getElementById('typing-name');
+        const names = ['Thofazzol Hossen', 'a Software Engineer', 'a Problem Solver', 'a Full Stack Developer'];
+        let nameIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+        
+        function typeEffect() {
+            const currentName = names[nameIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentName.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingElement.textContent = currentName.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 150;
+            }
+            
+            if (!isDeleting && charIndex === currentName.length) {
+                isDeleting = true;
+                typingSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                nameIndex = (nameIndex + 1) % names.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typingSpeed);
+        }
+        
+        // Start typing effect after a short delay
+        setTimeout(() => {
+            typeEffect();
+        }, 1000);
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+
+            // Show/hide scroll to top button
+            if (window.scrollY > 300) {
+                scrollTop.style.display = 'block';
+            } else {
+                scrollTop.style.display = 'none';
+            }
+        });
+
+        // Scroll to top functionality
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
